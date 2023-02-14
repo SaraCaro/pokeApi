@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import {db} from '../firebaseConfig';
 import { useEffect, useState } from "react";
 
@@ -20,9 +20,22 @@ function ListaDatos(){
         leerDatosFireStore();
     }, [])
 
+    const escribeDatosFireStore = async () => {
+        try {
+            const docRef = await addDoc(collection(db, "ejemplo"), {
+              nombre: "prueba3",    
+            });
+            console.log("Document written with ID: ", docRef.id);
+            leerDatosFireStore();
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+    }
+
     return (        
         <div className="">
             <h1>Componente lista datos</h1>
+            <button onClick={escribeDatosFireStore}>Escribe</button>
             {
                 ejemplo.map((ejemplo)=>(
                     <p key={ejemplo.id}>

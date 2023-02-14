@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <header className="pt-5">
+    <header className="pt-5 bg-dark">
           <div  className="d-flex justify-content-evenly align-items-center mb-5 pb-5">
-          <img src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="PokeAPI" width="200"/>
-              <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <Link to="/"><img src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="PokeAPI" width="200"/></Link>
+              <nav className="navbar navbar-expand-lg navbar-light bg-warning">
                   <div className="container-fluid">
                       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                           <span className="navbar-toggler-icon"></span>

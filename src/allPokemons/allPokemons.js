@@ -33,7 +33,7 @@ function AllPokemons(){
             )}
         </div>
         </div>
-        <button className="btn btn-dark my-4" onClick={cargarMas}>Obtener Más</button>
+        <button className="btn btn-secondary my-4" onClick={cargarMas}>Obtener Más</button>
     </>
     );
 }

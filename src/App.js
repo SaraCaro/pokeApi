@@ -20,8 +20,7 @@ function App() {
           <Route path="/pokemon" element={<AllPokemons />}></Route>
           <Route path="/detallePokemon/:id" element={<DetallePokemon />}></Route>
           <Route path="/jugar" element={<Juego />}></Route>
-          <Route path="/listaDatos" element={<ListaDatos />}></Route>
-          <Route path="*" element={<h1>404</h1>}></Route>**
+          <Route path="*" element={<h1>404</h1>}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

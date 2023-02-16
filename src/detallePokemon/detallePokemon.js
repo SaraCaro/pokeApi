@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Carousel } from "react-bootstrap";
 
 function DetallePokemon(){
     const { id } = useParams();
@@ -23,43 +24,65 @@ function DetallePokemon(){
     if(loaded){return(
             <> 
             <h1>{id}</h1>
-            <div className="container">
-                <div className="row d-flex justify-content-center">
-                    <div className="col-12 col-md-6 col-lg-3">
-                        <div className="card mt-3 ">
-                            <div className="card-body">
-                                <h5 className="card-title">{pokemon.name}</h5>
-                                <h6 className="card-subtitle mb-2 text-muted">N.º {pokemon.id}</h6>
-                                <img src={pokemon.sprites.front_default} className="card-img-top" alt={pokemon.name}/>
-                            </div>
-                        </div>
+            <div className="text-bg-dark d-flex align-items-center">
+            <div className="text-center col-6">
+                        <Carousel variant="dark">
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={pokemon.sprites.front_default}
+                            alt={pokemon.name}
+                            />
+                            <Carousel.Caption>
+                                <h3>Default Front</h3>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={pokemon.sprites.back_default}
+                            alt={pokemon.name}
+                            />
+                            <Carousel.Caption>
+                                <h3>Default Back</h3>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={pokemon.sprites.front_shiny}
+                            alt={pokemon.name}
+                            />
+                            <Carousel.Caption>
+                                <h3>Shiny Front</h3>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img
+                            className="d-block w-100"
+                            src={pokemon.sprites.back_shiny}
+                            alt={pokemon.name}
+                            />
+                            <Carousel.Caption>
+                                <h3>Shiny Back</h3>
+                            </Carousel.Caption>
+                            </Carousel.Item>
+                        </Carousel>
                     </div>
+                    <div className="text-start ms-5 col-5">
+                        <hr/>
+                        <h2>{pokemon.id}</h2>
+                        <h3><b>Nombre: </b>{pokemon.name}</h3>
+                        <h3><b>Altura: </b>{pokemon.height} Decimetros</h3>
+                        <h3><b>Peso: </b>{pokemon.weight} Hectogramos</h3>
+                        <h3><b>Experiencia: </b>{pokemon.base_experience}</h3>
+                        <h3><b>Tipo: </b></h3>
+                        <ul>
+                            {pokemon.types.map((tipo) => <li>{tipo.type.name}</li>)}
+                        </ul>
+                    </div>
+                    
                 </div>
-                <div className="row d-flex justify-content-center">
-                    <h2>Tipos</h2>
-                    <ul>
-                        {pokemon.types.map((tipo) =>
-                            <li key={tipo.type.name}>{tipo.type.name}</li>
-                        )}
-                    </ul>
-
-                    <h2>Habilidades</h2>
-                    <ul>
-                        {pokemon.abilities.map((habilidad) =>
-                            <li key={habilidad.ability.name}>{habilidad.ability.name}</li>
-                        )}
-                    </ul>
-
-                    <h2>Estadísticas</h2>
-                    <ul>
-                        {pokemon.stats.map((stat) =>
-                            <li key={stat.stat.name}>{stat.stat.name}: {stat.base_stat}</li>
-                        )}
-                    </ul>
-
-                    <h2>Movimientos</h2>
-                </div>
-            </div>
             </>
         );
         }

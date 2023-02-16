@@ -5,38 +5,36 @@ function Juego(){
     const [pokemon, setPokemon] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
-    const [listaPokemon, setListaPokemon] = useState([]); 
-    const [urlPokeAPI, setUrlPokeAPI] = useState();
-
     useEffect(() => {
-        // cargaTodos();
-        getRandomPokemon();
         getRandomPokemon();
     }, []);
 
-  function cargaTodos(){
-    fetch("https://pokeapi.co/api/v2/pokemon")
-      .then((response) => response.json())  
-      .then((datosAPI) => {
-        //setListaPokemon(listaPokemon.concat(datosAPI.results))
-        console.log('Peticion')
-      })
-    }
-
-    // useEffect(() => { getRandomPokemon(); getRandomPokemon(); getRandomPokemon()}, []);
 
     function getRandomPokemon(){
-
+        var aux = new Array();
         fetch("https://pokeapi.co/api/v2/pokemon/" + Math.floor(Math.random() * 898))
             .then((response) => response.json())
             .then((datosAPI) => {
-                setPokemon(pokemon.concat(datosAPI));
+                console.log(datosAPI.name)
+                aux.push(datosAPI.name);
+            })
+            fetch("https://pokeapi.co/api/v2/pokemon/" + Math.floor(Math.random() * 898))
+            .then((response) => response.json())
+            .then((datosAPI) => {
+                console.log(datosAPI.name)
+                aux.push(datosAPI.name);
+            })
+            fetch("https://pokeapi.co/api/v2/pokemon/" + Math.floor(Math.random() * 898))
+            .then((response) => response.json())
+            .then((datosAPI) => {
+                aux.push(datosAPI.name);
+                setPokemon(aux);
                 setLoaded(true);
                 console.log(datosAPI.name)
             })
+
     }
 
-    
 
     if(loaded){return(
             <>
@@ -45,8 +43,10 @@ function Juego(){
                     <div className="col-12 col-md-6 col-lg-3">
                         <div className="card mt-3 ">
                             <div className="card-body">
+                                {pokemon[0].name}
+                                {pokemon[1].name}
                             {pokemon.map((poke) => 
-                            <h5 key={poke.name}>{poke.name}</h5>
+                            <h5 key={poke}>{poke}</h5>
                             )}
                             </div>
                         </div>
@@ -54,7 +54,6 @@ function Juego(){
                 </div>
             </div>
     </>);
-
 }
 }
 export default Juego;

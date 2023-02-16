@@ -35,13 +35,29 @@ function DetallePokemon(){
                         </div>
                     </div>
                 </div>
-                <div className="mt-5">
-                    <div className="row row-cols-2 d-flex justify-content-center align-items-center">
-                        <div className="col"><p className="fs-4"><span>Height: </span>{pokemon.height}m</p></div>
-                        <div className="col"><p className="fs-4"><span>Weight: </span>{pokemon.weight}kg</p></div>
-                        <div className="col"><p className="fs-4"><span>Type: </span>{pokemon.types[0].type.name}</p></div>
-                        <div className="col"><p className="fs-4"><span>Main ability: </span>{pokemon.abilities[0].ability.name}</p></div>
-                    </div>
+                <div className="row d-flex justify-content-center">
+                    <h2>Tipos</h2>
+                    <ul>
+                        {pokemon.types.map((tipo) =>
+                            <li key={tipo.type.name}>{tipo.type.name}</li>
+                        )}
+                    </ul>
+
+                    <h2>Habilidades</h2>
+                    <ul>
+                        {pokemon.abilities.map((habilidad) =>
+                            <li key={habilidad.ability.name}>{habilidad.ability.name}</li>
+                        )}
+                    </ul>
+
+                    <h2>Estadísticas</h2>
+                    <ul>
+                        {pokemon.stats.map((stat) =>
+                            <li key={stat.stat.name}>{stat.stat.name}: {stat.base_stat}</li>
+                        )}
+                    </ul>
+
+                    <h2>Movimientos</h2>
                 </div>
             </div>
             </>
